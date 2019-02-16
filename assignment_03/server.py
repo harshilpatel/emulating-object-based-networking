@@ -1,4 +1,4 @@
-import sys, os, socket, logging
+import sys, os, socket, logging, math
 
 logger = logging.getLogger('udp-server')
 logger.setLevel(logging.DEBUG)
@@ -13,51 +13,52 @@ socket_server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_server.bind(socket_address)
 
 BUFF_SIZE = 1024
-STATIC_DIR = 'static/'
+STATIC_DIR = 'static_server/'
 
-def serve_file(name, address):
-    name = STATIC_DIR + name
-    if(os.path.isfile(name)):
-        num_of_packets = os.stat(name).st_size/BUFF_SIZE or 1
+def serve_file(filename, address):
+    filepath = STATIC_DIR + filename
+    if(os.path.isfile(filepath)):
+        num_of_packets = os.stat(filepath).st_size/float(BUFF_SIZE) or 1
+        num_of_packets = int(math.ceil(num_of_packets))
         socket_server.sendto(str(num_of_packets), address)
-        file_to_send = open(name, 'r')
+        file_to_send = open(filepath, 'r')
         for i in range(num_of_packets):
             data = file_to_send.read(BUFF_SIZE)
             socket_server.sendto(data, address)
         
         file_to_send.close()
-        logger.debug("file with name %s was served to %s", name, address); return True
+        logger.debug("file with name %s was served to %s", filename, address); return True
     else:
-        logger.debug("file with name %s was not served to %s", name, address); return False
+        logger.debug("file with name %s was not served to %s", filename, address); return False
 
-def write_file(name, num_of_packets, address):
-    name = STATIC_DIR + name
-    file_to_write = open(name, 'w+')
+def write_file(filename, num_of_packets, address):
+    filepath = STATIC_DIR + filename
+    file_to_write = open(filepath, 'w+')
     for i in range(num_of_packets):
         data, address = socket_server.recvfrom(BUFF_SIZE)
         file_to_write.write(data)
     
     file_to_write.close()
-    logger.debug("file with name %s was read from %s", name, address); return True
+    logger.debug("file with name %s was read from %s", filename, address); return True
 
 
-def rename_file(old_name, new_name):
-    old_name = STATIC_DIR + old_name
-    new_name = STATIC_DIR + new_name
-    if(os.path.isfile(old_name)):
-        os.rename(old_name, new_name)
+def rename_file(file_oldname, file_newname):
+    file_oldpath = STATIC_DIR + file_oldname
+    file_newpath = STATIC_DIR + file_newname
+    if(os.path.isfile(file_oldpath)):
+        os.rename(file_oldpath, file_newpath)
         return True
     else:
-        logger.error("file with name %s was not found", old_name)
+        logger.error("file with name %s was not found", file_oldname)
         return False
 
-def remove_file(file_name):
-    file_name = STATIC_DIR + file_name
-    if(os.path.isfile(file_name)):
-        os.remove(file_name)
+def remove_file(filename):
+    filepath = STATIC_DIR + filename
+    if(os.path.isfile(filepath)):
+        os.remove(filepath)
         return True
     else:
-        logger.error("file with name %s was not found", file_name)
+        logger.error("file with name %s was not found", filename)
         return False
 
 if __name__ == "__main__":
