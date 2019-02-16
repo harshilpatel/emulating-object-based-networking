@@ -54,9 +54,9 @@ def delete(filename):
 
 if __name__ == "__main__":
     # echo("Hello!!")
-    # rename("test.txt", "text.txt")
-    # download_file("text.txt")
-    # delete("text.txt")
-    upload_file("test.txt") 
+    upload_file("test.txt")
+    rename("test.txt", "text.txt")
+    download_file("text.txt")
+    delete("text.txt")
     
     
