@@ -1,3 +1,4 @@
+from utils import logger
 import sys, os, socket, logging, math
 import json
 
@@ -25,8 +26,6 @@ class BaseClient:
 
 
 class RPCClient(BaseClient):
-    logger = None
-
     def __init__(self, server_address):
         self.server_address = server_address
         self.socket_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

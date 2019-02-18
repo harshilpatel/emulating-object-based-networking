@@ -1,4 +1,5 @@
-import sys, os, socket, logging, math
+from utils import logger
+import sys, os, socket, math
 import json
 
 BUFF_SIZE = 2048
@@ -9,7 +10,6 @@ class BaseServer:
 
 class RPCServer(BaseServer):
     client_pool = []
-    logger = None
 
     def __init__(self, address):
         self.address = address
@@ -20,7 +20,14 @@ class RPCServer(BaseServer):
         return json.dumps({'result': result})
         
     def process_request_data(self, data):
-        request_data = json.loads(data)
+        request_data = ''
+        
+        try:
+            request_data = json.loads(data)
+        except ValueError:
+            logger.error("no json could be decoded")
+            return self.encode_response("ERROR")
+
         request_method = request_data['method']
         request_args = request_data['args']
         # request_args_extra = request_data['args_extra']
@@ -35,15 +42,21 @@ class RPCServer(BaseServer):
     def serve_infinitely(self):
         self.socket_server.bind(self.address)
         self.socket_server.listen(1)
+
+        logger.info("starting server & listen to packets at %s", self.address)
+
         while True:
             connection, client_address = self.socket_server.accept()
+            logger.debug("received a new connection with address %s", client_address)
             try:
                 while True:
                     data = connection.recv(BUFF_SIZE)
                     if not data:
                         break
-
+                    
+                    logger.debug("received data: %s from client: %s", data, client_address)
                     result = self.process_request_data(data)
                     connection.send(result)
             finally:
                 connection.close()
+                logger.debug("closed connection to client with address: %s", client_address)
