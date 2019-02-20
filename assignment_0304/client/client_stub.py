@@ -35,7 +35,10 @@ class RPCClient(BaseClient):
         return self.server_rpc_proxy
     
     def connect_server(self):
-        self.socket_client.connect(self.server_address)
+        try:
+            self.socket_client.connect(self.server_address)
+        except Exception as e:
+            logger.debug("failed to connect to server")
     
     def disconnect_server(self):
         self.socket_client.close()

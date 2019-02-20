@@ -7,18 +7,57 @@ BUFF_SIZE = 2048
 class BaseServer:
     def add(self, i, j):
         return i + j
-    def add():
     
-     number1 = input("First number: ") 
-     number2 = input("\nSecond number: ") 
+    def calculate_pi(self):
+        return 3.14
     
-     # Adding two numbers 
-     # User might also enter float numbers 
-    sum = float(number1) + float(number2) 
-        return sum
-     # Display the sum 
-     # will print value in float 
-     #print("The sum of {0} and {1} is {2}" .format(number1, number2, sum))
+    def sort(self, items_list):
+        if not items_list:
+            logger.error("submitted array for sorting is empty")
+
+        items_list.sort()
+
+        logger.error("submitted array was sorted")
+        return items_list
+
+    def base_matrix_muliply(self, matrixA, matrixB):
+        logger.debug("multiplying matrices: %s and %s", matrixA, matrixB)
+        if not matrixA or not matrixB:
+            return []
+        result = []
+
+        x1 = len(matrixA[0])
+        y1 = len(matrixA)
+
+        x2 = len(matrixB[0])
+        y2 = len(matrixB)
+
+        assert x1 == x2
+
+        for i in range(y1):
+            result.append([])
+            for j in range(y2):
+              result[i].append(0)
+            
+        for i in range(y1):
+            for j in range(y2):
+                result[i][j] = 0
+                for a in range(x1):
+                        result[i][j] += (matrixA[i][a] * matrixB[a][j])
+        
+        logger.debug("result is %s", result)
+        return result
+
+    
+    def matrix_multiply(self, matrixA, matrixB, matrixC):
+        logger.debug("multiplying matrices: %s and %s and %s", matrixA, matrixB, matrixC)
+
+        result = self.base_matrix_muliply(matrixA, matrixB)
+        result = self.base_matrix_muliply(result, matrixC)
+
+        logger.debug("result is %s", result)
+        return result
+
 
 class RPCServer(BaseServer):
     client_pool = []
@@ -59,7 +98,7 @@ class RPCServer(BaseServer):
 
         while True:
             connection, client_address = self.socket_server.accept()
-            logger.debug("received a new connection with address %s", client_address)
+            logger.info("received a new connection with address %s", client_address)
             try:
                 while True:
                     data = connection.recv(BUFF_SIZE)
@@ -71,4 +110,4 @@ class RPCServer(BaseServer):
                     connection.send(result)
             finally:
                 connection.close()
-                logger.debug("closed connection to client with address: %s", client_address)
+                logger.info("closed connection to client with address: %s", client_address)
