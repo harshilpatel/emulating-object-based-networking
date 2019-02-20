@@ -56,7 +56,7 @@ def rename(old_name, new_name):
         logger.error("missing names")
 
     socket_client.sendto("RENAME {0},{1}".format(old_name, new_name), address)
-    logger.debug("file %s was requested to be renamed to %s". old_name, new_name)
+    logger.debug("file %s was requested to be renamed to %s", old_name, new_name)
 
 def delete(filename):
     socket_client.sendto("DELETE {0}".format(filename), address)
@@ -75,17 +75,17 @@ if __name__ == "__main__":
 
     action = ''
     while action != "0":
-        action = input("Enter your action: \n0. quit\n1.Upload\n2.Rename\n3.Download\n4.Delete")
+        action = raw_input("Enter your action: \n0. quit\n1.Upload\n2.Rename\n3.Download\n4.Delete\nChoice:\t")
         if action == "1":
-            filename = input("Enter the filename to upload: ")
+            filename = raw_input("Enter the filename to upload: ")
             upload_file(filename)
         elif action == "2":
-            old_name = input("Enter the filename to rename: ")
-            new_name = input("Enter the new name: ")
+            old_name = raw_input("Enter the filename to rename: ")
+            new_name = raw_input("Enter the new name: ")
             rename(old_name, new_name)
         elif action == "3":
-            filename = input("Enter the filename to download: ")
+            filename = raw_input("Enter the filename to download: ")
             download_file(filename)
         elif action == "4":
-            filename = input("Enter the filename to delete: ")
+            filename = raw_input("Enter the filename to delete: ")
             delete(filename)
