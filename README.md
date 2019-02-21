@@ -32,10 +32,10 @@ Assignment 3
 
 Assignment 4
     How to run:
-        A. To run locally on seperate terminals
+        A. To run locally on seperate terminals:
             a. Run `cd assignment_0304/server` and `cd assignment_0304/client` on seperate terminals
-            b. Run `./run.sh` on both terminals
-        B. To run remotely using a single terminal
+            b. Run the following `./build.sh` and `./run.sh` on both terminals.
+        B. To run remotely using a single terminal:
             a. Navigate the directory -> `cd assignment_0304`
             b. Build the docker images `./build.sh`
             c. Run the images in containers -> `./run.sh`
