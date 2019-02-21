@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -P --network="host" rpc-client
+docker run -it -P --network="host" rpc-client
