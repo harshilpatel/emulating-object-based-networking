@@ -48,14 +48,11 @@ class BaseServer:
         logger.debug("result is %s", result)
         return result
 
-    
-    def matrix_multiply(self, matrixA, matrixB, matrixC):
-        logger.debug("multiplying matrices: %s and %s and %s", matrixA, matrixB, matrixC)
-
+    def matrix_multiply(self, matrixA, matrixB):
+        logger.debug("multiplying matrices: %s and %s", matrixA, matrixB)
         result = self.base_matrix_muliply(matrixA, matrixB)
-        result = self.base_matrix_muliply(result, matrixC)
 
-        logger.debug("result is %s", result)
+        logger.debug("final result is %s", result)
         return result
 
 

@@ -57,18 +57,16 @@ if __name__ == "__main__":
         elif user_input == '4':
             y1, x1 = take_matrix_size("first")
             y2, x2 = take_matrix_size("second")
-            y3, x3 = take_matrix_size("third")
 
-            if y1 != x2 or x2 != x3:
+            if y1 != x2:
                 logger.error("Cannot multiply for the given size")
                 continue
 
             matrixA = take_input_matrix(y1, x1, "first")
             matrixB = take_input_matrix(y2, x2, "second")
-            matrixC = take_input_matrix(y3, x3, "third")
 
-            if matrixA and matrixB and matrixC:
-                rpc_client.matrix_multiply(matrixA, matrixB, matrixC)
+            if matrixA and matrixB:
+                rpc_client.matrix_multiply(matrixA, matrixB)
 
 
     # terminate the connection

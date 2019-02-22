@@ -26,9 +26,11 @@ Assignment 1
 Assignment 3
     How to run:
         a: Open 2 terminals.
-        b. on terminal 1: `cd assignment_0304/server/ && python server.py`
-        c. on terminal 2: `cd assignment_0304/client/ && python client.py`
-        d. the logs are streamed to the console & file -> *assignment_0304/server/server.log* && *assignment_0304/server/client.log*
+        b: Navigate into the projects directory.
+        c: on terminal 1: `cd assignment_0304/server/ && python server.py`
+        d: on terminal 2: `cd assignment_0304/client/ && python client.py`
+        e: the logs are streamed to the console & file -> *assignment_0304/server/server.log* && *assignment_0304/server/client.log*
+        f: inspect the logs/console ouput to understand the behaviour
 
 Assignment 4
     How to run:
