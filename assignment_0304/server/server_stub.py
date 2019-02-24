@@ -32,8 +32,6 @@ class BaseServer:
         x2 = len(matrixB[0])
         y2 = len(matrixB)
 
-        assert x1 == x2
-
         for i in range(y1):
             result.append([])
             for j in range(y2):
