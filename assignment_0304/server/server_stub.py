@@ -34,13 +34,13 @@ class BaseServer:
 
         for i in range(y1):
             result.append([])
-            for j in range(y2):
+            for j in range(x2):
               result[i].append(0)
             
         for i in range(y1):
-            for j in range(y2):
+            for j in range(x2):
                 result[i][j] = 0
-                for a in range(x1):
+                for a in range(y2):
                         result[i][j] += (matrixA[i][a] * matrixB[a][j])
         
         logger.debug("result is %s", result)
