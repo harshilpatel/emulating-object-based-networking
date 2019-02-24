@@ -35,12 +35,14 @@ Assignment 3
 Assignment 4
     How to run:
         A. To run locally on seperate terminals:
-            a. Run `cd assignment_0304/server` and `cd assignment_0304/client` on seperate terminals
-            b. Run the following `./build.sh` and `./run.sh` on both terminals.
+            a. Open two terminals and navigate to the project directory.
+            b. Run `cd assignment_0304/server` and `cd assignment_0304/client` on the terminals.
+            c. Run the following `./build.sh` and `./run.sh` on both terminals.
         B. To run remotely using a single terminal:
-            a. Navigate the directory -> `cd assignment_0304`
-            b. Build the docker images `./build.sh`
-            c. Run the images in containers -> `./run.sh`
-            d. Two containers with names *rpc-server* *rpc-client* should start and begin communicating as visibile earlier.
-            e. The logs, if required are visible for running containers with `./logs.sh`
-            f. Stop the containers -> `./stop.sh`
+            a. Open two terminals and navigate to the project directory.
+            b. Navigate to the directory -> `cd assignment_0304`
+            c. Build the docker images for both client and server -> `./build.sh`
+            d. Run the images in containers -> `./run.sh`
+            e. Two containers with names *rpc-server* *rpc-client* should start and begin communicating as visibile earlier.
+            f. The logs, if required are visible for running containers with `./logs.sh`
+            g. Stop/Terminate the containers -> `./stop.sh`
