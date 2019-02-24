@@ -5,6 +5,7 @@ import json
 BUFF_SIZE = 2048
 
 class BaseServer:
+    # contains all the methods exposed as RPC callable methods
     def add(self, i, j):
         return i + j
     
@@ -17,7 +18,7 @@ class BaseServer:
 
         items_list.sort()
 
-        logger.error("submitted array was sorted")
+        logger.debug("submitted array was sorted to %s", items_list)
         return items_list
 
     def base_matrix_muliply(self, matrixA, matrixB):

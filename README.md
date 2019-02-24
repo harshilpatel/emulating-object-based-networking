@@ -1,13 +1,18 @@
+5306 - Spring 2019
 Project - 1
-Members: __ __
-Student ID: __ __
-Last Names: __ __
+Members: Patel Harshilkumar, Timmaiahgari Sreenidhi
+Student ID: 1001717222, 1001721679
+Last Names: Patel, Timmaiahgari
 
 Assignments have been broken into directories
 Assignment 1 is in /assignment_01
 Assignment 3 & 4 have been combined in /assignment_0304
 
 All assignment require 'python 2'
+
+Environment requirements:
+    - python2 as the default runtime for `python` command
+    - optionally, running docker in the system
 
 Assignment 1
     How to run:
@@ -28,17 +33,17 @@ Assignment 3
         a: Open 2 terminals.
         b: Navigate into the projects directory.
         c: on terminal 1: `cd assignment_0304/server/ && python server.py`
-        d: on terminal 2: `cd assignment_0304/client/ && python client.py`
+        d: on termi nal 2: `cd assignment_0304/client/ && python client.py`
         e: the logs are streamed to the console & file -> *assignment_0304/server/server.log* && *assignment_0304/server/client.log*
         f: inspect the logs/console ouput to understand the behaviour
 
 Assignment 4
     How to run:
-        A. To run locally on seperate terminals:
+        A. To run locally:
             a. Open two terminals and navigate to the project directory.
             b. Run `cd assignment_0304/server` and `cd assignment_0304/client` on the terminals.
             c. Run the following `./build.sh` and `./run.sh` on both terminals.
-        B. To run remotely using a single terminal:
+        B. To run remotely:
             a. Open two terminals and navigate to the project directory.
             b. Navigate to the directory -> `cd assignment_0304`
             c. Build the docker images for both client and server -> `./build.sh`
